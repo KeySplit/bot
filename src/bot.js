@@ -105,7 +105,7 @@ function mainMenu(session) {
   session.reply(SOFA.Message({
     body: "What would you like to do?",
     controls: [
-      {type: 'button', label: 'Go to my dashboard', action: 'Webview://http://keysplit-dapp.herokuapp.com/'},
+      {type: 'button', label: 'Go to my dashboard', action: 'Webview::http://keysplit-dapp.herokuapp.com/'},
       {type: 'button', label: 'How does KeySplit work?', value: 'about'},
       {type: 'button', label: 'Tell me about key security', value: 'security'},
       {type: 'button', label: 'Donate', value: 'donate'}
