@@ -1,0 +1,45 @@
+version: '2'
+services:
+  headless-client:
+    build: dependencies/headless-client
+    links:
+      - redis
+      - postgres
+    environment: &environment
+      - TOKEN_APP_SEED=giraffe tank swamp mushroom timber runway coast cargo century hero sing scatter
+      - TOKEN_APP_USERNAME=KeySplit
+      - TOKEN_APP_NAME=KeySplit
+      - TOKEN_APP_AVATAR=attachments/avatar.jpg
+      ##
+      ## Token App Id: 0x4224a45ee3f5f0f7d09a71dc7ceb9de894c57893
+
+      ## Token App Payment Address: 0x7cd51e08529e9a75e96b107f3c27dd329613f0c5
+      ##
+      - REDIS_URL=redis://h:rlcMWNrxXgqS0xM8aWCYuE0R@redis:6379
+      - DATABASE_URL=postgres://token:va5uOdJBqu2dZ1@postgres:5432/token
+      - LOG_LEVEL=INFO
+      - ENABLE_LOG_TIMESTAMPS=0
+    volumes:
+      - ./config:/usr/src/headless-client/config
+      - ./attachments:/usr/src/headless-client/attachments
+  bot:
+    build: .
+    links:
+      - redis
+      - postgres
+    environment: *environment
+    volumes:
+      - ./config:/usr/src/bot/config
+      - ./src:/usr/src/bot/src
+  redis:
+    build: dependencies/redis
+    ports:
+      - 6379
+  postgres:
+    image: postgres:9.6
+    ports:
+      - 15432
+    environment:
+      - POSTGRES_PASSWORD=va5uOdJBqu2dZ1
+      - POSTGRES_USER=token
+      - POSTGRES_DB=token
