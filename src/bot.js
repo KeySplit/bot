@@ -105,7 +105,7 @@ function mainMenu(session) {
   session.reply(SOFA.Message({
     body: "What would you like to do?",
     controls: [
-      {type: 'button', label: 'Go to my KeySplit dashboard', value: 'dashboard'},
+      {type: 'button', label: 'Go to my KeySplit dashboard', action: 'WebView://https://keysplit.io'},
       {type: 'button', label: 'How does KeySplit work?', value: 'about'},
       {type: 'button', label: 'Tell me about key security', value: 'security'},
       {type: 'button', label: 'Donate', value: 'donate'}
